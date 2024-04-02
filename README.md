@@ -1,17 +1,96 @@
-**Step to run the project (celery and flower)**
- 1. Change the path using
-      - **cd celery_with_django**
- 2. Activate the environment using
-      - **& D:\ReverseBits\Projects\django\celery_with_django\env\Scripts\activate.ps1**
+# Django Project with Celery and Flower - README
 
-   - Follow above two step to each terminal.
- 3. Run the python using
-      - **python manage.py runserver**
- 4. Run celery worker using 
-      - **celery -A django_celery_project.celery worker -n worker_for_add_sub -Q add-queue,sub-queue -l INFO -P gevent**
-      - **celery -A django_celery_project.celery worker -n worker_for_send_mail -Q sendmail -l INFO -P gevent**
- 5. Run flower using 
-      - **celery --broker=redis://localhost:6379// flower**
+This is a Django project integrated with Celery for asynchronous task processing and Flower for real-time monitoring.
+
+## Prerequisites
+
+Before running this project, ensure you have the following prerequisites installed:
+
+1. **Python**: Make sure Python is installed on your system. You can download and install Python from [python.org](https://www.python.org/downloads/).
+
+2. **Django**: Install Django using pip:
+
+    ```bash
+    pip install django
+    ```
+
+3. **Celery**: Install Celery using pip:
+
+    ```bash
+    pip install celery
+    ```
+
+4. **Celery Redis Broker**: Celery requires a message broker such as Redis. Install Redis and configure it as the Celery broker. You can download Redis from [redis.io](https://redis.io/download).
+
+5. **Flower (Optional)**: Flower is a real-time monitoring tool for Celery. Install Flower using pip:
+
+    ```bash
+    pip install flower
+    ```
+
+6. **Virtual Environment (Optional)**: It's recommended to use a virtual environment to isolate project dependencies:
+
+    ```bash
+    pip install virtualenv
+    ```
+
+7. **Other Python Packages**: Depending on your project requirements, you may need to install additional Python packages. You can install them using pip.
+
+8. **Database Setup**: Configure your Django project to use a database. Django supports multiple databases like SQLite, PostgreSQL, MySQL, etc.
+
+9. **SMTP Server Configuration (Optional)**: If your project involves sending emails, configure the SMTP server settings in your Django project settings.
+
+## Installation
+
+1. Clone this repository:
+
+    ```bash
+    git clone https://github.com/reverseBits/python_poc.git
+    cd your-project
+    ```
+
+2. Set up your virtual environment (optional):
+
+    ```bash
+    virtualenv venv
+    source venv/bin/activate   # For Linux/Mac
+    .\venv\Scripts\activate    # For Windows
+    ```
+
+3. Install project dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Configure your Django project settings, including database settings, Celery configuration, etc.
+
+5. Run database migrations:
+
+    ```bash
+    python manage.py migrate
+    ```
+
+6. Start Celery workers:
+
+    ```bash
+    celery -A django_celery_project.celery worker -n worker_for_add_sub -Q add-queue,sub-queue -l INFO -P gevent
+    celery -A django_celery_project.celery worker -n worker_for_send_mail -Q sendmail -l INFO -P gevent
+    ```
+
+7. Start Flower (optional):
+
+    ```bash
+    celery --broker=redis://localhost:6379/ flower
+    ```
+
+8. Run the Django development server:
+
+    ```bash
+    python manage.py runserver
+    ```
+
+9. Access the Django admin interface and other endpoints in your browser.
 
 
 

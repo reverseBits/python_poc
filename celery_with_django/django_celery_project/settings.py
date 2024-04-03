@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w63dld2gxku7hkplgs%2i4hj3f0t_t8vrxxx0x6$u=pcq=g#7u'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'main_app',
     'django_celery_results',
     'django_celery_beat',
@@ -134,7 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # CELERY SETTINGS
-
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = os.getenv("CELERY_RESULT_SERIALIZER")
@@ -144,7 +142,6 @@ CELERY_RESULT_EXTENDED =os.getenv("CELERY_RESULT_EXTENDED")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 CELERY_TASK_TRACK_STARTED = os.getenv("CELERY_TASK_TRACK_STARTED")
 
-
 # diffrent  queue according to task 
 # this is one way to create Queue
 CELERY_TASK_ROUTES = {
@@ -152,12 +149,10 @@ CELERY_TASK_ROUTES = {
     'main_app.tasks.sub': {'queue': 'sub-queue'},
     }
 
-
 # celery beat
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # SMTP SETTINGS
-
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = os.getenv("EMAIL_PORT")

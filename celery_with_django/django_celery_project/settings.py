@@ -142,7 +142,7 @@ CELERY_RESULT_EXTENDED =os.getenv("CELERY_RESULT_EXTENDED")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 CELERY_TASK_TRACK_STARTED = os.getenv("CELERY_TASK_TRACK_STARTED")
 
-# diffrent  queue according to task 
+# different queue according to task
 # this is one way to create Queue
 CELERY_TASK_ROUTES = {
     'main_app.tasks.add': {'queue': 'add-queue'},
